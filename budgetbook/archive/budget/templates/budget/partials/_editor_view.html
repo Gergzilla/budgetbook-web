@@ -1,0 +1,36 @@
+<!DOCTYPE HTML>
+
+<div id="editor_page">
+    {% if error_message %}
+    <p>{{error_message}}</p>
+    {% endif %}
+
+    <table class="table table_striped">
+        <thead>
+            <tr>
+                <th scope="col">Date</th>
+                <th scope="col">Charge Name</th>
+                <th scope="col">Amount</th>
+                <th scope="col">Category Tag</th>
+                <th scope="col">Notes</th>
+            </tr>
+        </thead>
+        <form action="/editor/" method="post"></form>
+        <tbody class="table-group-divider">
+            
+                {% csrf_token %}
+            {% for charges in data %}
+            <tr>
+                <td><input class="form-control" label="Charge Date" type="text" value="{{charges.charge_date}}" disabled></td>
+                <td><input class="form-control" label="Charge Name" type="text" value="{{charges.charge_name}}" disabled></td>
+                <td><input class="form-control" label="Charge Amount" type="text" value=${{charges.amount|floatformat:2}} disabled></td>
+                <td><input class="form-control" label="Category Tag" type="text" value={{charges.tag_id}}></td>
+                <td><input class="form-control" label="Notes" type="text" value="{{charges.note}}"></td>
+            </tr>
+            {% endfor %}
+            <button type="button" onclick="alert('I dont do anything, apparently')">Save</button>
+        </tbody>
+        
+        </form>
+    </table>
+</div>

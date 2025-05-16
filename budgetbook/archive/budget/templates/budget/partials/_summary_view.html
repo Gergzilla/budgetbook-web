@@ -1,0 +1,39 @@
+<!DOCTYPE HTML>
+
+<div id="summary_report">
+    {% if error_message %}
+    <p>{{error_message}}</p>
+    {% endif %}
+    <p>List of all charges by month and year currently imported (year selection does nothing atm)</p>    
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">Date</th>
+            <th scope="col">Charge Name</th>
+            <th scope="col">Amount</th>
+            <th scope="col">Category Tag</th>
+            <th scope="col">Notes</th>
+        </tr>
+    </thead>
+    <tbody class="table-group-divider">
+        <!-- <tr> -->
+            <!-- <td>Static Test Date</td> -->
+            <!-- <td>Static Test charge Name</td> -->
+            <!-- <td>Static Test Amount</td> -->
+            <!-- <td>Static Test Tag</td> -->
+            <!-- <td>Static Test Note</td> -->
+        <!-- </tr> -->
+        {% for charges in data %}
+        <tr>
+            <td>{{charges.charge_date}}</td>
+            <td>{{charges.charge_name}}</td>
+            <td>${{charges.amount|floatformat:2}}</td>
+            <td>{{charges.tag_id}}</td>
+            <td>{{charges.note}}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+</div>
